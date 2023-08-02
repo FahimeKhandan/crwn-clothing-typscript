@@ -9,6 +9,7 @@ import Shop from './components/shop/shop.component'
 
 import './index.scss'
 import SignIn from './components/sign-in/SignIn.component'
+import SignUpForm from './components/sign-up/SignUpForm.component'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'signIn',
         element: <SignIn />
+      },
+      {
+        path: 'signUpForm',
+        element: <SignUpForm />
       }
     ]
   }
