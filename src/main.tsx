@@ -8,6 +8,7 @@ import Home from './components/home/Home.components'
 import Shop from './components/shop/shop.component'
 
 import './index.scss'
+import SignIn from './components/sign-in/SignIn.component'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: 'shop',
         element: <Shop />
+      },
+      {
+        path: 'signIn',
+        element: <SignIn />
       }
     ]
   }
