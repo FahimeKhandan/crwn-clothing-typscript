@@ -1,25 +1,21 @@
 import './button.style.scss'
 
-interface ButtonTypes {
-  google: string
-  inverted: string
-}
-
-const BUTTON_TYPE_CLASSES: ButtonTypes = {
+const BUTTON_TYPE_CLASSES = {
   google: 'google-sign-in',
   inverted: 'inverted'
 }
 
-const Button = ({
-  children,
-  type,
-  ...otherProps
-}: {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string
-  type: 'google' | 'inverted'
-}) => {
+  typeClass?: 'google' | 'inverted'
+}
+
+const Button: React.FC<ButtonProps> = ({ children, typeClass, ...otherProps }) => {
   return (
-    <button className={`button-container ${BUTTON_TYPE_CLASSES[type]}`} {...otherProps}>
+    <button
+      className={`button-container ${typeClass ? BUTTON_TYPE_CLASSES[typeClass] : ''}`}
+      {...otherProps}
+    >
       {children}
     </button>
   )

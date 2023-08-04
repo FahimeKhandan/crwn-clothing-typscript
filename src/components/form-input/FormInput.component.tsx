@@ -3,7 +3,6 @@ import './form-input.style.scss'
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string
-  ref: string
 }
 
 const FormInput: ForwardRefRenderFunction<HTMLInputElement, InputProps> = ({
