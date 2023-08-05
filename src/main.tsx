@@ -6,10 +6,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 //components
 import Home from './components/home/Home.components'
 import Shop from './components/shop/shop.component'
+import { UserProvider } from './contexts/user.context'
 
 import './index.scss'
-import SignIn from './components/sign-in/SignIn.component'
-import SignUpForm from './components/sign-up/SignUpForm.component'
+import Authentication from './components/authentication/Authentication.component'
+import { ProductProvider } from './contexts/product.context'
+import CartDropDown from './components/cart-dropdown/CartDropDown.component'
+import { CartProvider } from './contexts/cart.context'
 
 const router = createBrowserRouter([
   {
@@ -25,19 +28,21 @@ const router = createBrowserRouter([
         element: <Shop />
       },
       {
-        path: 'signIn',
-        element: <SignIn />
+        path: 'authentication',
+        element: <Authentication />
       },
-      {
-        path: 'signUpForm',
-        element: <SignUpForm />
-      }
     ]
   }
 ])
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <ProductProvider>
+        <CartProvider>
+          <RouterProvider router={router} />
+        </CartProvider>
+      </ProductProvider>
+    </UserProvider>
   </React.StrictMode>
 )

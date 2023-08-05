@@ -1,8 +1,14 @@
 // styles
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import './sign-up-form.style.scss'
-import FormInput from '../form-input/FormInput.component'
-import Button from '../button/button.component'
+import FormInput from '../form-input/FormInput.component.js'
+import Button from '../button/button.component.js'
+
+import {
+  signInWithGooglePopup,
+  createUserDocumentFromAuth,
+  createAuthUserWithEmailAndPassword
+} from '../../utils/firebase/firebase.utils.js'
 
 interface FormFields {
   displayName: string
@@ -11,6 +17,14 @@ interface FormFields {
   confirmPassword: string
 }
 
+const defaultFormFields: FormFields = {
+
+  displayName: '',
+  email: '',
+  password: '',
+  confirmPassword: ''
+
+}
 const SignUpForm = () => {
   const [formFields, setFormFields] = useState({
     displayName: '',
@@ -27,7 +41,34 @@ const SignUpForm = () => {
     setFormFields({ ...formFields, [name]: value })
   }
 
-  const handleSubmit = () => {}
+  const resetFormFields = () => {
+    setFormFields(defaultFormFields);
+  };
+
+  const handleSubmit = async (event: any) => {
+    event.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert('passwords do not match');
+      return;
+    }
+
+    try {
+      const { user } = await createAuthUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUserDocumentFromAuth(user, { displayName });
+      resetFormFields();
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        alert('Cannot create user, email already in use');
+      } else {
+        console.log('user creation encountered an error', error);
+      }
+    }
+  };
 
   return (
     <div className="sign-up-container">

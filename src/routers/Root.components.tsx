@@ -10,7 +10,7 @@ function Root() {
   return (
     <>
       <Navigation />
-    <div className='body-container'>  <Outlet /></div>
+      <div className='body-container'>  <Outlet /></div>
     </>
   )
 }

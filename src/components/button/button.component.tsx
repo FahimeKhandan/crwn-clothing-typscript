@@ -7,13 +7,13 @@ const BUTTON_TYPE_CLASSES = {
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: string
-  typeClass?: 'google' | 'inverted'
+  buttonType?: 'google' | 'inverted',
 }
 
-const Button: React.FC<ButtonProps> = ({ children, typeClass, ...otherProps }) => {
+const Button: React.FC<ButtonProps> = ({ children, buttonType, ...otherProps }) => {
   return (
     <button
-      className={`button-container ${typeClass ? BUTTON_TYPE_CLASSES[typeClass] : ''}`}
+      className={`button-container ${buttonType ? BUTTON_TYPE_CLASSES[buttonType] : ''}`}
       {...otherProps}
     >
       {children}
