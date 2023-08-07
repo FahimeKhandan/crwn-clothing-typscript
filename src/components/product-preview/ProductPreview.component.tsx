@@ -2,6 +2,7 @@ import { useContext } from 'react'
 import ProductCard from '../product-card/ProductCard.component'
 import './product-preview.style.scss'
 import { CategoriesContext } from '../../contexts/categories.context'
+import { Link } from 'react-router-dom'
 
 const ProductPreview = () => {
     const { categoriesMap } = useContext(CategoriesContext)
@@ -10,7 +11,7 @@ const ProductPreview = () => {
         Object.keys(categoriesMap).map((title, index) =>
             <div className='category-preview-container' key={title + index}>
                 <h2>
-                    <span className='title'>{title.toUpperCase()}</span>
+                    <Link className='title' to={title}>{title.toUpperCase()}</Link>
                 </h2>
                 <div className='preview'>
                     {

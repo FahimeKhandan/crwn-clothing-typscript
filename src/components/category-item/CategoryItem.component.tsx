@@ -5,7 +5,7 @@ import { Category } from '../../types'
 const CategoryItem = ({ category }: { category: Category }) => {
   const { imageUrl, title } = category
   return (
-    <div className="category-container">
+    <div className="directory-container">
       <div
         className="background-image"
         style={{

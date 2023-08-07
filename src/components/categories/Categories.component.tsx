@@ -9,7 +9,7 @@ import { Category } from '../../types/index'
 
 const Categories = ({ categories }: { categories: Array<Category> }) => {
   return (
-    <div className="directory-container">
+    <div className="categories-container">
       {categories.map((category) => (
         <CategoryItem key={category.id} category={category} />
       ))}
