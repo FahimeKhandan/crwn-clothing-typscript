@@ -10,9 +10,11 @@ import { UserProvider } from './contexts/user.context'
 
 import './index.scss'
 import Authentication from './components/authentication/Authentication.component'
-import { ProductProvider } from './contexts/product.context'
+import { CategoriesProvider } from './contexts/categories.context'
 import CartDropDown from './components/cart-dropdown/CartDropDown.component'
 import { CartProvider } from './contexts/cart.context'
+import Checkout from './components/checkout/checkout.component'
+import Category from './components/category/category.component'
 
 const router = createBrowserRouter([
   {
@@ -25,12 +27,22 @@ const router = createBrowserRouter([
       },
       {
         path: 'shop',
-        element: <Shop />
+        element: <Shop />,
+        children: [
+          {
+            path: ":category",
+            element: <Category />,
+          },
+        ],
       },
       {
         path: 'authentication',
         element: <Authentication />
       },
+      {
+        path: 'checkout',
+        element: <Checkout />
+      }
     ]
   }
 ])
@@ -38,11 +50,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <UserProvider>
-      <ProductProvider>
+      <CategoriesProvider>
         <CartProvider>
           <RouterProvider router={router} />
         </CartProvider>
-      </ProductProvider>
+      </CategoriesProvider>
     </UserProvider>
   </React.StrictMode>
 )
